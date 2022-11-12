@@ -38,42 +38,36 @@ afterEach(async () => {
 });
 
 describe('the index.js file', () => {
-  it('should define a string variable named introduction', async () => {
-    const introduction = await page.evaluate(() => introduction);
-    expect(introduction).toBeDefined();
+  it('should save the length of the string variable named quote in a variable named quoteLength', async () => {
+    const quoteLength = await page.evaluate(() => quoteLength);
+    const quote = await page.evaluate(() => quote);
+    expect(quoteLength).toBe(quote.length);
   });
   
-  it('should include a new line within introduction should include a tab within introduction', async () => {
-    const introduction = await page.evaluate(() => introduction);
-    expect(introduction).toContain('\n')
+  it('should save the twenty-second character in the quote in a variable named twentySecondLetter', async () => {
+    const twentySecondLetter = await page.evaluate(() => twentySecondLetter);
+    const quote = await page.evaluate(() => quote);
+    expect(twentySecondLetter).toBe(quote[21]);
   });
   
-  it('should include a tab within introduction', async () => {
-    const introduction = await page.evaluate(() => introduction);
-    expect(introduction).toContain('\t')
+  it('should create a string variable named output that contains the quoteLength', async () => {
+    const output = await page.evaluate(() => output);
+    const quoteLength = await page.evaluate(() => quoteLength);
+    expect(output).toContain(`${quoteLength}`);
   });
   
-  it('should include a single quote within introduction', async () => {
-    const introduction = await page.evaluate(() => introduction);
-    expect(introduction).toContain('\'')
+  it('should create a string variable named output that contains the twentySecondLetter between two brackets ([])', async () => {
+    const output = await page.evaluate(() => output);
+    const twentySecondLetter = await page.evaluate(() => twentySecondLetter);
+    expect(output).toContain(`[${twentySecondLetter}]`);
   });
   
-  it('should include a double quote within introduction', async () => {
-    const introduction = await page.evaluate(() => introduction);
-    expect(introduction).toContain('\"')
-  });
-  
-  it('should include a backslash within introduction', async () => {
-    const introduction = await page.evaluate(() => introduction);
-    expect(introduction).toContain('\\')
-  });
-  
-  it('should assign the innerHTML of the HTML element with the id result to the introduction', async () => {
-    const introduction = await page.evaluate(() => introduction);
+  it('should assign the innerHTML of the HTML element with the id result to the output', async () => {
+    const output = await page.evaluate(() => output);
     const innerHtml = await page.$eval("#result", (result) => {
       return result.innerHTML;
     });
-    
-    expect(innerHtml).toBe(introduction);
+      
+    expect(innerHtml).toBe(output);
   });
 });
